@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.admin.dtos.UserDTO;
 import com.admin.services.UserService;
 
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "user")
 public class UserController {
 
 	@Autowired
@@ -25,6 +26,11 @@ public class UserController {
 	@GetMapping(path = "find-all")
 	public ResponseEntity<List<UserDTO>> findAll() {
 		return userService.findAll();
+	}
+
+	@GetMapping(path = "find-by-id")
+	public ResponseEntity<UserDTO> findById(@RequestParam Long id) {
+		return userService.findById(id);
 	}
 
 	@PostMapping(path = "add")
@@ -38,8 +44,8 @@ public class UserController {
 	}
 
 	@DeleteMapping(path = "delete")
-	public ResponseEntity<UserDTO> delete(@RequestBody String id) {
-		return userService.delete(Long.valueOf(id));
+	public ResponseEntity<UserDTO> delete(@RequestParam Long id) {
+		return userService.delete(id);
 	}
 
 }

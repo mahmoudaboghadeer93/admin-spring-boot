@@ -1,5 +1,6 @@
 package com.admin.dtos;
 
+import com.admin.entities.BaseEntity;
 import com.admin.entities.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,7 +13,9 @@ import lombok.Setter;
 @Setter
 @JsonInclude(value = Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserDTO {
+public class UserDTO extends BaseDTO {
+
+	private static final long serialVersionUID = -1044512123232267864L;
 
 	private Long id;
 
@@ -24,7 +27,9 @@ public class UserDTO {
 
 	private String password;
 
-	public UserDTO toDTO(User user) {
+	@Override
+	public UserDTO toDTO(BaseEntity baseEntity) {
+		User user = (User) baseEntity;
 		id = user.getId();
 		username = user.getUsername();
 		firstName = user.getFirstName();
@@ -33,6 +38,7 @@ public class UserDTO {
 		return this;
 	}
 
+	@Override
 	public User toEntity() {
 		User user = new User();
 		user.setId(id);

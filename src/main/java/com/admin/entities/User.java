@@ -2,7 +2,6 @@ package com.admin.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -12,11 +11,9 @@ import lombok.Setter;
 @Table(name = "user")
 @Getter
 @Setter
-public class User {
+public class User extends BaseEntity {
 
-	@Id
-	@Column(name = "id")
-	private Long id;
+	private static final long serialVersionUID = 151997237985134268L;
 
 	@Column(name = "username")
 	private String username;

@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.admin.dtos.UserDTO;
 import com.admin.entities.User;
 import com.admin.repositories.UserRepository;
 
 @Service
+@Transactional
 public class UserService {
 
 	@Autowired
@@ -27,6 +29,11 @@ public class UserService {
 			userDTOs.add(userDTO.toDTO(user));
 		}
 		return new ResponseEntity<>(userDTOs, HttpStatus.OK);
+	}
+
+	public ResponseEntity<UserDTO> findById(Long id) {
+		User user = userRepository.findByUserId(id);
+		return new ResponseEntity<>(new UserDTO().toDTO(user), HttpStatus.OK);
 	}
 
 	public ResponseEntity<UserDTO> add(UserDTO userDTO) {
