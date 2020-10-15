@@ -34,7 +34,9 @@ public class UserService {
 	}
 
 	public ResponseEntity<UserDTO> update(UserDTO userDTO) {
-		return new ResponseEntity<>(new UserDTO().toDTO(userRepository.save(userDTO.toEntity())), HttpStatus.OK);
+		User user = userRepository.findByUserId(userDTO.getId());
+		userDTO.updateEntity(user);
+		return new ResponseEntity<>(new UserDTO().toDTO(userRepository.save(user)), HttpStatus.OK);
 	}
 
 	public ResponseEntity<UserDTO> delete(Long id) {

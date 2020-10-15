@@ -16,7 +16,7 @@ import com.admin.dtos.UserDTO;
 import com.admin.services.UserService;
 
 @RestController
-@RequestMapping(path = "user")
+@RequestMapping(path = "/user")
 public class UserController {
 
 	@Autowired

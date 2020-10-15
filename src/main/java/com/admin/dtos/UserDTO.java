@@ -41,7 +41,17 @@ public class UserDTO {
 		user.setLastName(lastName);
 		user.setPassword(password);
 		return user;
+	}
 
+	public void updateEntity(User user) {
+		if (username != null)
+			user.setUsername(username);
+		if (firstName != null)
+			user.setFirstName(firstName);
+		if (lastName != null)
+			user.setLastName(lastName);
+		if (password != null)
+			user.setPassword(password);
 	}
 
 }
