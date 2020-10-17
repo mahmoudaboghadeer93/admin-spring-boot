@@ -7,7 +7,7 @@ spring:
     name: admin
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/admin #172.17.0.3
+    url: jdbc:mysql://172.16.3.20:3306/admin #172.17.0.3
     username: root
     password: root
   data:
